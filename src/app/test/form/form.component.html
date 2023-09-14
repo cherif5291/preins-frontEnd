@@ -1,0 +1,24 @@
+<form [formGroup]="monFormulaire">
+    <label for="prix">Prix :</label>
+    <input type="text" id="prix" formControlName="prix">
+    <div *ngIf="monFormulaire.get('prix')?.dirty && monFormulaire.get('prix')?.hasError('required')">
+      Le prix est requis.
+    </div>
+    <div *ngIf="monFormulaire.get('prix')?.dirty && monFormulaire.get('prix')?.hasError('minlength')">
+      Le prix doit comporter au moins 5 caractères.
+    </div>
+    <div *ngIf="monFormulaire.get('prix')?.dirty && monFormulaire.get('prix')?.hasError('maxlength')">
+      Le prix ne peut pas dépasser 10 caractères.
+    </div>
+    <div *ngIf="monFormulaire.get('prix')?.dirty && monFormulaire.get('prix')?.hasError('pattern')">
+      Le prix doit être au format xx.xx.
+    </div>
+    <br>
+    <label for="">text</label>
+    <input type="text" formControlName="titre">
+    <br>
+    <button type="submit">Envoyer</button>
+    <pre>
+        {{monFormulaire.valid  | json}}
+    </pre>
+</form>
